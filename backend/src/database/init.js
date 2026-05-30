@@ -10,16 +10,38 @@ const CREATE_USERS_TABLE = `
   )
 `;
 
+const CREATE_CARGO_TABLE = `
+  CREATE TABLE IF NOT EXISTS cargo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cargo_id TEXT NOT NULL,
+    shipment_date TEXT NOT NULL,
+    weight_kg INTEGER NOT NULL,
+    destination TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+  )
+`;
+
 function initDatabase() {
   return new Promise((resolve, reject) => {
-    db.run(CREATE_USERS_TABLE, (err) => {
-      if (err) {
-        console.error('Failed to create users table:', err.message);
-        reject(err);
-        return;
-      }
-      console.log('Users table ready');
-      resolve();
+    db.serialize(() => {
+      db.run(CREATE_USERS_TABLE, (usersErr) => {
+        if (usersErr) {
+          console.error('Failed to create users table:', usersErr.message);
+          reject(usersErr);
+          return;
+        }
+        console.log('Users table ready');
+
+        db.run(CREATE_CARGO_TABLE, (cargoErr) => {
+          if (cargoErr) {
+            console.error('Failed to create cargo table:', cargoErr.message);
+            reject(cargoErr);
+            return;
+          }
+          console.log('Cargo table ready');
+          resolve();
+        });
+      });
     });
   });
 }
