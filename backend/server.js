@@ -5,6 +5,7 @@ const cors = require('cors');
 const db = require('./src/database/db');
 const initDatabase = require('./src/database/init');
 const authRoutes = require('./src/routes/authRoutes');
+const cargoRoutes = require('./src/routes/cargoRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(authRoutes);
+app.use(cargoRoutes);
 
 app.get('/health', (req, res) => {
   db.get('SELECT 1 AS ok', (err) => {
