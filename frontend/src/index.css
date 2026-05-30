@@ -1,0 +1,48 @@
+:root {
+  --bg-deep: #04060f;
+  --bg-panel: rgba(8, 16, 32, 0.72);
+  --border: rgba(0, 212, 255, 0.28);
+  --border-strong: rgba(0, 212, 255, 0.55);
+  --text: #e6f4ff;
+  --text-muted: #8fa8c7;
+  --accent: #00d4ff;
+  --accent-dim: #1a6fd4;
+  --admin: #ffc857;
+  --success: #5dffb8;
+  --error: #ff7b8a;
+  --earth: #b388ff;
+  --font-display: 'Orbitron', system-ui, sans-serif;
+  --font-body: 'Rajdhani', system-ui, sans-serif;
+  --radius: 14px;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text);
+  background: var(--bg-deep);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+  color: var(--accent);
+}
