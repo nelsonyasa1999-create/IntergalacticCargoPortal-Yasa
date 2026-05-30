@@ -6,3 +6,4 @@ uploads
 
 # Local assessment brief (not for public repo)
 .local/
+.cursor/
